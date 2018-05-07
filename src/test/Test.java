@@ -9,4 +9,9 @@ public class Test {
         System.out.println(ss.height);
         System.out.println(ss.width);
     }
+
+    public void hello()
+    {
+        System.out.println("Hello World");
+    }
 }
