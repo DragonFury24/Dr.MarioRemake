@@ -7,7 +7,8 @@ import java.awt.event.KeyListener;
 
 public class GameWindow extends JFrame implements KeyListener {
     private JPanel    gameArea;
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenSize = Toolkit.getDefaultToolkit()
+                                          .getScreenSize();
 
     // TODO: 5/6/2018 Test different TICK_RATEs later
     /*
@@ -26,9 +27,8 @@ public class GameWindow extends JFrame implements KeyListener {
 
         /// TODO: 5/6/2018 Test different ways of setting window size or hard code screen ratios e.g. 21:9, 4:3, 18:9
 
-        createGameArea();
-        add(gameArea);
-
+        setLocation(screenSize.width / 2, screenSize.height / 2);
+        setResizable(false);
         setVisible(true);
     }
 
