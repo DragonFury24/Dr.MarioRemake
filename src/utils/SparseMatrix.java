@@ -21,6 +21,24 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
         return (list.get(i).getRow() * numCols) + list.get(i).getCol();
     }
 
+
+    // TODO: 5/11/2018
+    /*
+      public boolean contains(anyType x);		//true if x exists in list
+      public int[] getLocation(anyType x);	//returns location [r,c] of where x exists in list, null otherwise
+      public Object[][] toArray();				//returns equivalent structure in 2-D array form
+      public boolean isEmpty();					//returns true if there are no actual elements stored
+      public void clear();							//clears all elements out of the list
+
+		public void setBlank(char blank);		//allows the client to set the character that a blank spot in the array is
+															//represented by in String toString()
+   	*/
+
+    public boolean isEmpty() {
+        return numElements == 0;
+    }
+
+
     //returns the element at row r, col c
     public anyType get(int r, int c) {
         for (Cell e : list) {
@@ -28,6 +46,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
                 return (anyType) e.getValue();
             }
         }
+
         return null;
     }
 
@@ -102,12 +121,14 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 anyType point = get(row, col);
+
                 if (point == null) {
                     sb.append("- ");
                 } else {
                     sb.append(point).append(" ");
                 }
             }
+
             sb.append("\n");
         }
 

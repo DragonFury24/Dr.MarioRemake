@@ -4,12 +4,19 @@ import java.awt.*;
 
 public class Pill {
 
+
+    public enum Orientation {
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN,
+    }
+
     private Color myColor;
     private Shape myShape;
 
-    public Pill(Color c, Shape s) {
+    public Pill(Color c, Orientation o) {
         myColor = c;
-        myShape = s;
     }
 
     public Color getColor() {

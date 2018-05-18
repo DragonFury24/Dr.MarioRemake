@@ -1,7 +1,8 @@
 package utils;
 
 public class Cell<anyType> {
-    private anyType value;    //the actual Object that the Cell stores <can be any type>
+    //the actual Object that the Cell stores <can be any type>
+    private anyType value;
     private int     row;        //the row value it is simulated to be stored at
     private int     col;        //the column value it is simulated to be stored at
 
