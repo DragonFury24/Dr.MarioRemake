@@ -1,7 +1,6 @@
 package utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SparseMatrix<anyType> implements Matrixable<anyType> {
 
@@ -25,12 +24,16 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
 
     // TODO: 5/11/2018
     /*
-      public boolean contains(anyType x);		//true if x exists in list
       public Object[][] toArray();				//returns equivalent structure in 2-D array form
 
 		public void setBlank(char blank);		//allows the client to set the character that a blank spot in the array is
 															//represented by in String toString()
    	*/
+
+    public boolean contains(anyType x) {
+        return list.stream()
+                   .anyMatch(e -> e.getValue().equals(x));
+    }
 
     public boolean isEmpty() {
         return numElements == 0;
