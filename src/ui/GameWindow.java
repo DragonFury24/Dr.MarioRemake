@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class GameWindow extends JFrame implements KeyListener {
+public class GameWindow extends JFrame implements MouseListener {
     private JPanel    gameArea;
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private Dimension screenSize = Toolkit.getDefaultToolkit()
+                                          .getScreenSize();
 
     // TODO: 5/6/2018 Test different TICK_RATEs later
     /*
@@ -26,9 +29,8 @@ public class GameWindow extends JFrame implements KeyListener {
 
         /// TODO: 5/6/2018 Test different ways of setting window size or hard code screen ratios e.g. 21:9, 4:3, 18:9
 
-        createGameArea();
-        add(gameArea);
-
+        setLocation(screenSize.width / 2, screenSize.height / 2);
+        setResizable(false);
         setVisible(true);
     }
 
@@ -41,17 +43,27 @@ public class GameWindow extends JFrame implements KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        //if (e.getKeyCode() == KeyEvent.VK_DOWN);
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
+    public void mouseClicked(MouseEvent e) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

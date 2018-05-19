@@ -1,5 +1,8 @@
 import logic.GameManager;
+import logic.Pill;
 import ui.GameWindow;
+
+import java.awt.*;
 
 public class DrMMain {
     private static boolean gameIsRunning = true;

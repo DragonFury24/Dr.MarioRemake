@@ -2,127 +2,155 @@ package utils;
 
 import java.util.ArrayList;
 
-public class SparseMatrix<anyType> implements Matrixable<anyType>{
+public class SparseMatrix<anyType> implements Matrixable<anyType> {
 
-    private ArrayList<Cell<anyType>> list;
-    private int numElements;
-    private int numRows, numCols;
+    private ArrayList<Cell<anyType>> list        = new ArrayList<>();
+    private int                      numElements = 0;
+    private int                      numRows, numCols;
 
-    public SparseMatrix (int r, int c)
-    {
-        list = new ArrayList();
-        numElements = 0;
+    public SparseMatrix(int r, int c) {
         numRows = r;
         numCols = c;
-
     }
 
-    public int getKey(int r,int c)
-    {
-
-        return (r*numCols) + c;
-
+    public int getKey(int r, int c) {
+        return (r * numCols) + c;
     }
 
-    public int getKey(int i)
-    {
-        return (list.get(i).getRow()*numCols) + list.get(i).getCol();
+    public int getKey(int i) {
+        return (list.get(i).getRow() * numCols) + list.get(i).getCol();
     }
 
-    public anyType get(int r, int c)				//returns the element at row r, col c
-    {
-        for(int i=0;i<list.size();i++)
-        {
-            if(list.get(i).getRow() == r && list.get(i).getCol() == c)
-            {
-                return (anyType)list.get(i).getValue();
+
+    // TODO: 5/11/2018
+    /*
+      public Object[][] toArray();				//returns equivalent structure in 2-D array form
+
+		public void setBlank(char blank);		//allows the client to set the character that a blank spot in the array is
+															//represented by in String toString()
+   	*/
+
+    public boolean contains(anyType x) {
+        return list.stream()
+                   .anyMatch(e -> e.getValue().equals(x));
+    }
+
+    public boolean isEmpty() {
+        return numElements == 0;
+    }
+
+
+    public void clear() {
+        list.clear();
+        numElements = 0;
+    }
+
+    public int[] getLocation(anyType x) {
+        int[] location = new int[2];
+
+        for (Cell e : list) {
+            if (e.getValue().equals(x)) {
+                location[0] = e.getRow();
+                location[1] = e.getCol();
             }
-
         }
+
+        return location;
+    }
+
+    //returns the element at row r, col c
+    public anyType get(int r, int c) {
+        for (Cell e : list) {
+            if (e.getRow() == r && e.getCol() == c) {
+                return (anyType) e.getValue();
+            }
+        }
+
         return null;
     }
-    public anyType set(int r, int c, anyType x)	//changes element at (r,c), returns old value
-    {
 
+    //changes element at (r,c), returns old value
+    public anyType set(int r, int c, anyType x) {
         anyType oldValue;
-        int tempKey = getKey(r,c);
-        for(int i=0;i<list.size();i++)
-        {
-            if(getKey(i) == tempKey)
-            {
+        int     tempKey = getKey(r, c);
+
+        for (int i = 0; i < list.size(); i++) {
+            if (getKey(i) == tempKey) {
                 oldValue = list.get(i).getValue();
                 list.get(i).setValue(x);
-                return (anyType)oldValue;
+
+                return oldValue;
             }
-
         }
+
         return null;
-
     }
-    public void add(int r, int c, anyType x)	   //adds obj at row r, col c
-    {
 
+    //adds obj at row r, col c
+    public void add(int r, int c, anyType x) {
         numElements++;
-        int tempKey = getKey(r,c);
-        for(int i=0;i<list.size();i++)
-        {
-            if(getKey(i) > tempKey)
-            {
-                list.add(i,new Cell(r,c,x));
+        int tempKey = getKey(r, c);
+
+        for (int i = 0; i < list.size(); i++) {
+            if (getKey(i) > tempKey) {
+                list.add(i, new Cell(r, c, x));
+
                 return;
             }
         }
-        list.add(new Cell(r,c,x));
 
+        list.add(new Cell(r, c, x));
     }
-    public anyType remove(int r, int c)
-    {
+
+    public anyType remove(int r, int c) {
         numElements--;
-        int tempKey = getKey(r,c);
+        int     tempKey = getKey(r, c);
         anyType oldValue;
-        for(int i=0;i<list.size();i++)
-        {
-            if(getKey(i) == tempKey)
-            {
+
+        for (int i = 0; i < list.size(); i++) {
+            if (getKey(i) == tempKey) {
                 oldValue = list.get(i).getValue();
                 list.remove(i);
-                return (anyType) oldValue;
+
+                return oldValue;
             }
 
         }
         return null;
     }
-    public int size()			//returns # actual elements stored
-    {
+
+    //returns # actual elements stored
+    public int size() {
         return numElements;
     }
-    public int numRows()		//returns # rows set in constructor
-    {
+
+    //returns # rows set in constructor
+    public int numRows() {
         return numRows;
     }
-    public int numColumns() //returns # cols set in constructor
-    {
+
+    //returns # cols set in constructor
+    public int numColumns() {
         return numCols;
     }
-    public String toString()
-    {
-        String abc = "";
-        for(int i = 0; i< numRows; i++)
-        {
-            for(int j = 0; j< numCols; j++)
-            {
-                anyType point = get(i,j);
-                if(point == null)
-                {
-                    abc += "- ";
-                }
-                else
-                {
-                    abc += point + " ";
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                anyType point = get(row, col);
+
+                if (point == null) {
+                    sb.append("- ");
+                } else {
+                    sb.append(point).append(" ");
                 }
             }
-            abc += "\n";
+
+            sb.append("\n");
         }
-        return abc;
+
+        return sb.toString();
     }
 }

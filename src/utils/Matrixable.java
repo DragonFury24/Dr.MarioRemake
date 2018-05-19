@@ -1,19 +1,25 @@
 package utils;
 
 public interface Matrixable<anyType> {
-    public anyType get(int r, int c);                //returns the element at row r, col c
+    //returns the element at row r, col c
+    anyType get(int r, int c);
 
-    public anyType set(int r, int c, anyType x);    //changes element at (r,c), returns old value
+    //changes element at (r,c), returns old value
+    anyType set(int r, int c, anyType x);
 
-    public void add(int r, int c, anyType x);       //adds obj at row r, col c
+    //adds obj at row r, col c
+    void add(int r, int c, anyType x);
 
-    public anyType remove(int r, int c);
+    anyType remove(int r, int c);
 
-    public int size();            //returns # actual elements stored
+    //returns # actual elements stored
+    int size();
 
-    public int numRows();        //returns # rows set in constructor
+    //returns # rows set in constructor
+    int numRows();
 
-    public int numColumns();    //returns # cols set in constructor
+    //returns # cols set in constructor
+    int numColumns();
 
    	/*
       public boolean contains(anyType x);		//true if x exists in list
