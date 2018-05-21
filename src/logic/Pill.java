@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Pill {
 
-//add return methods for row and col, a pill is one block on the grid instead of two
+//add return methods for row and col, a pill is one block on the grid instead of two, randomize the color and orientation in the constructor
     public enum Orientation {
         LEFT,
         RIGHT,
