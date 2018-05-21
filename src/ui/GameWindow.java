@@ -12,11 +12,7 @@ public class GameWindow extends JFrame implements MouseListener {
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
 
-    // TODO: 5/6/2018 Test different TICK_RATEs later
-    /*
-    Implement constant TICK with variable, maximum frame times
-    http://www.koonsolo.com/news/dewitters-gameloop/
-     */
+
     private final int TICK_RATE = 30;
 
     public GameWindow() {
@@ -29,7 +25,7 @@ public class GameWindow extends JFrame implements MouseListener {
 
         /// TODO: 5/6/2018 Test different ways of setting window size or hard code screen ratios e.g. 21:9, 4:3, 18:9
 
-        setLocation(screenSize.width / 2, screenSize.height / 2);
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }

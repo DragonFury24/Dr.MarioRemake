@@ -12,10 +12,14 @@ public class DrMMain {
     public static void main(String[] args) {
         GameWindow  gw = new GameWindow();
         GameManager gm = new GameManager();
+        
+        gm.start();
 
         while (gameIsRunning) {
             gm.run();
             gw.display();
         }
+
+        gm.stop();
     }
 }
