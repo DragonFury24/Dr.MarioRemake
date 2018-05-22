@@ -4,62 +4,63 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class GameWindow extends JFrame implements MouseListener {
+public class GameWindow extends JFrame implements KeyListener, Runnable {
     private JPanel    gameArea;
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
 
 
-    private final int TICK_RATE = 30;
+    private Thread thread;
 
     public GameWindow() {
-        setTitle("Dr. Mario");
+        thread = new Thread(this);
+    }
+
+    private void configureFrame() {
+
+        setTitle("Mancala");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Window size for screens with 16:9 aspect ratio
-        if (screenSize.width / screenSize.height == 16 / 9)
-            setSize(screenSize.width / 2, screenSize.height * 2 / 3);
-
-        /// TODO: 5/6/2018 Test different ways of setting window size or hard code screen ratios e.g. 21:9, 4:3, 18:9
-
+        setSize(screenSize.width / 2, screenSize.height / 2);
         setLocationRelativeTo(null);
-        setResizable(false);
         setVisible(true);
     }
 
-    private void createGameArea() {
+    private void createUI() {
 
     }
 
-    public void display() {
+    public void refresh() {
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+    public synchronized void start() {
+        configureFrame();
+        createUI();
+        run();
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
+    public synchronized void stop() {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void run() {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }

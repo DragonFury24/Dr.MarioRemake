@@ -29,6 +29,7 @@ public class GameManager implements Runnable{
         thread = new Thread(this);
         thread.start();
         running = true;
+        run();
     }
 
     public synchronized void stop() {
