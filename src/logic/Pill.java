@@ -1,10 +1,10 @@
 package logic;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Pill {
-
-//add return methods for row and col, a pill is one block on the grid instead of two, randomize the color and orientation in the constructor
+    //add return methods for row and col, a pill is one block on the grid instead of two, randomize the color and orientation in the constructor
     public enum Orientation {
         LEFT,
         RIGHT,
@@ -12,33 +12,59 @@ public class Pill {
         DOWN,
     }
 
-    private Color myColor;
-    private Shape myShape;
-    private int row, col;
+    private Color       color;
+    private Shape       shape;
+    private Orientation orientation;
 
-    public Pill(Color c, Orientation o) {
-        if((int)Math.random()*3 == 0)
-            myColor = Color.blue;
-        else if((int)Math.random()*3 == 1)
-            myColor = Color.red;
-        else
-            myColor = Color.yellow;
-        row = 0;
-        col = 7;
+    private static final Random RANDOM_GEN = new Random(9525);
+
+    public Pill() {
+        int rand = RANDOM_GEN.nextInt(3);
+
+        switch (rand) {
+            case 0:
+                color = Color.blue;
+                break;
+            case 1:
+                color = Color.red;
+                break;
+            case 2:
+                color = Color.yellow;
+                break;
+            default:
+                break;
+        }
+
+        rand = RANDOM_GEN.nextInt(4);
+
+        switch (rand) {
+            case 0:
+                orientation = Orientation.LEFT;
+                break;
+            case 1:
+                orientation = Orientation.RIGHT;
+                break;
+            case 2:
+                orientation = Orientation.UP;
+                break;
+            case 3:
+                orientation = Orientation.DOWN;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public Pill(Color color, Orientation orientation) {
+        this.color = color;
+        this.orientation = orientation;
     }
 
     public Color getColor() {
-        return myColor;
+        return color;
     }
 
-    public Shape getShape() {
-        return myShape;
+    public Orientation getOrientation() {
+        return orientation;
     }
-
-    public int getRow() {return row;}
-
-    public int getCol() {return col;}
-
-
-
 }

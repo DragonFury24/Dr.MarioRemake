@@ -1,7 +1,7 @@
 package utils;
 
 public class Queue<E> {
-    private java.util.LinkedList<E> list;
+        private java.util.LinkedList<E> list;
 
     public Queue() {
         list = new java.util.LinkedList<E>();

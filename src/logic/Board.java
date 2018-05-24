@@ -3,9 +3,11 @@ package logic;
 import utils.SparseMatrix;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements KeyListener {
 
     public static void main(String args[]) {
 
@@ -45,4 +47,18 @@ public class Board {
         }
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
