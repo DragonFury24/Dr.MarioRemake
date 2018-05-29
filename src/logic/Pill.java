@@ -16,7 +16,7 @@ public class Pill {
     private Shape       shape;
     private Orientation orientation;
 
-    private static final Random RANDOM_GEN = new Random(9525);
+    private static final Random RANDOM_GEN = new Random(9275);
 
     public Pill() {
         int rand = RANDOM_GEN.nextInt(3);
@@ -30,7 +30,6 @@ public class Pill {
                 break;
             case 2:
                 color = Color.yellow;
-                break;
             default:
                 break;
         }
