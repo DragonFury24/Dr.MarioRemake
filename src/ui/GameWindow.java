@@ -37,7 +37,6 @@ public class GameWindow extends JFrame implements KeyListener, Runnable {
     public synchronized void start() {
         configureFrame();
         createUI();
-        run();
     }
 
     public synchronized void stop() {

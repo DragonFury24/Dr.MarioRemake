@@ -29,7 +29,7 @@ public class GameManager implements Runnable{
         thread = new Thread(this);
         thread.start();
         running = true;
-        run();
+
     }
 
     public synchronized void stop() {
@@ -45,6 +45,10 @@ public class GameManager implements Runnable{
         while (running) {
             System.out.println("testing");
         }
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 
     private long getRunningTime() {

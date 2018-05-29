@@ -12,7 +12,14 @@ public class DrMMain {
 
         gw.start();
         gm.start();
-        gw.stop();
-        gm.stop();
+
+        while(true) {
+            if (!gm.isRunning()) {
+                gm.stop();
+                gw.stop();
+                break;
+            }
+
+        }
     }
 }
