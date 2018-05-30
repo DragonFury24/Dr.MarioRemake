@@ -45,7 +45,11 @@ public class GameWindow extends JFrame implements KeyListener, Runnable {
 
     @Override
     public void run() {
-
+        JFrame frame = new JFrame("Dr. Mario");
+        DMPanel panel = new DMPanel();
+        frame.setContentPane(new DMPanel());
+        frame.setSize(450,450);
+        frame.setLocation(200,200);
     }
 
     @Override
