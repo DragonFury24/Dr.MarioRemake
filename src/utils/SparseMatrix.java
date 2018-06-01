@@ -134,6 +134,12 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
         return numCols;
     }
 
+    public anyType[][] toArray() {
+        anyType[][] temp = (anyType[][])(new Object[10][10]);
+
+        return temp;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
