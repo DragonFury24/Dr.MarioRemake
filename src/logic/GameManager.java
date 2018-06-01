@@ -35,20 +35,32 @@ public class GameManager implements Runnable{
     public synchronized void stop() {
         try {
             thread.join();
-            running = false;
         }catch (InterruptedException ie) {
             ie.printStackTrace();
         }
     }
 
     public void run() {
+        Game game = new Game(Game.BACKING_CONTAINERS.SparseMatrix);
+
         while (running) {
-            System.out.println("testing");
+            game.update();
+
+            if (game.reset()) {
+                game = new Game(Game.BACKING_CONTAINERS.SparseMatrix);
+                continue;
+            }
         }
+
+        running = false;
     }
 
     public boolean isRunning() {
         return running;
+    }
+
+    public void setRunning(boolean val) {
+        running = val;
     }
 
     private long getRunningTime() {

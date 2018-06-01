@@ -40,7 +40,11 @@ public class GameWindow extends JFrame implements KeyListener, Runnable {
     }
 
     public synchronized void stop() {
-
+        try {
+            thread.join();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
     }
 
     @Override
