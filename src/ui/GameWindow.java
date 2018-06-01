@@ -7,9 +7,10 @@ import java.awt.event.KeyListener;
 
 public class GameWindow extends JFrame implements KeyListener, Runnable {
     private JPanel    gameArea;
+    private DMPanel dmPanel = new DMPanel();
+
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
-
 
     private Thread thread;
 
@@ -18,11 +19,11 @@ public class GameWindow extends JFrame implements KeyListener, Runnable {
     }
 
     private void configureFrame() {
-
-        setTitle("Mancala");
+        setTitle("Dr. Mario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(screenSize.width / 2, screenSize.height / 2);
         setLocationRelativeTo(null);
+        setContentPane(dmPanel);
         setVisible(true);
     }
 
@@ -49,11 +50,7 @@ public class GameWindow extends JFrame implements KeyListener, Runnable {
 
     @Override
     public void run() {
-        JFrame frame = new JFrame("Dr. Mario");
-        DMPanel panel = new DMPanel();
-        frame.setContentPane(new DMPanel());
-        frame.setSize(450,450);
-        frame.setLocation(200,200);
+
     }
 
     @Override

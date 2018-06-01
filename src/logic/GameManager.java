@@ -3,12 +3,14 @@ package logic;
 
 // TODO: 5/6/2018 Look into multithreading
 
+import java.awt.event.ActionListener;
+
 // TODO: 5/6/2018 Test different TICK_RATEs later
     /*
     Implement constant TICK with variable, maximum frame times
     http://www.koonsolo.com/news/dewitters-gameloop/
      */
-public class GameManager implements Runnable{
+public class GameManager implements Runnable {
     private GameState gs;
     private API api;
     private Thread thread;
