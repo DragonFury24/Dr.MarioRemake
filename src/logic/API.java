@@ -28,4 +28,6 @@ public class API implements EventListener {
     public int numUnitsRemoved {
 
     }
+
+    //calculate total score to write to file, display high score
 }
