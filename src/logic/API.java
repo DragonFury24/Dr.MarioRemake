@@ -13,20 +13,20 @@ public class API implements EventListener {
         gs = gameState;
     }
 
-    public GameState gameState() {
-        return gs;
-    }
+//    public GameState gameState() {
+//        return gs;
+//    }
 
     public int totalScore() {
         return gs.getTotalScore();
     }
 
     public int numViruses() {
-
+        return 0;
     }
 
-    public int numUnitsRemoved {
-
+    public int numUnitsRemoved() {
+        return 0;
     }
 
     //calculate total score to write to file, display high score
