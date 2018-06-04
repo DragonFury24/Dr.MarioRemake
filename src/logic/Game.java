@@ -5,13 +5,10 @@ import utils.SparseMatrix;
 public class Game {
     private boolean reset = false;
 
+    private Board board;
 
-    private SparseMatrix<Unit> sparseBoard = null;
-    private Unit[][]           arrayBoard  = null;
-    private Board board = new Board();
-
-    public Game() {
-
+    public Game(Board.BACKING_CONTAINERS container) {
+        board = new Board(container);
     }
 
     public void update() {

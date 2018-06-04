@@ -5,7 +5,7 @@ import utils.SparseMatrix;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Board implements KeyListener {
+public class Board {
     private SparseMatrix<Unit> sparseBoard;
     private Unit[][] arrayBoard;
     private boolean usingSparse;
@@ -62,35 +62,5 @@ public class Board implements KeyListener {
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int event = e.getKeyCode();
-
-        switch (event) {
-            case KeyEvent.VK_LEFT:
-//                moveLeft();
-                System.out.println("Left arrow");
-                break;
-            case KeyEvent.VK_RIGHT:
-//                moveRight();
-                System.out.println("Right arrow");
-                break;
-            case KeyEvent.VK_DOWN:
-//                moveDown();
-                System.out.println("Down arrow");
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

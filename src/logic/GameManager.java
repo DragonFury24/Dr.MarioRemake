@@ -43,13 +43,13 @@ public class GameManager implements Runnable {
     }
 
     public void run() {
-        Game game = new Game(Game.BACKING_CONTAINERS.SparseMatrix);
+        Game game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
 
         while (running) {
             game.update();
 
             if (game.reset()) {
-                game = new Game(Game.BACKING_CONTAINERS.SparseMatrix);
+                game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
                 continue;
             }
         }
