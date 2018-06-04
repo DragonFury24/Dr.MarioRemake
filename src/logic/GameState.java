@@ -1,18 +1,28 @@
 package logic;
 
 public class GameState {
-    private int totalScore;
-    private int numViruses;
+    static private int totalScore;
+    static private int numViruses;
+    static private boolean running;
 
-    public int getTotalScore() {
+    static int getTotalScore() {
         return totalScore;
     }
 
-    public int getNumViruses() {
+    static int getNumViruses() {
         return numViruses;
     }
 
-    public void setNumViruses(int viruses) {
+    static void setNumViruses(int viruses) {
         numViruses = viruses;
+    }
+
+    static boolean isRunning() {
+        return running;
+    }
+
+    static boolean setRunning(boolean gameStatus) {
+        running = gameStatus;
+        return running;
     }
 }

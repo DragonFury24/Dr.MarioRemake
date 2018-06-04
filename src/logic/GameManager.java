@@ -11,10 +11,7 @@ import java.awt.event.ActionListener;
     http://www.koonsolo.com/news/dewitters-gameloop/
      */
 public class GameManager implements Runnable {
-    private GameState gs;
-    private API api;
     private Thread thread;
-    private boolean running = false;
 
     private final int TICKS_PER_SECOND = 15;
     private final int TICK_SKIP = 1000 / TICKS_PER_SECOND;
@@ -22,15 +19,9 @@ public class GameManager implements Runnable {
 
     private final long START_TIME = System.currentTimeMillis();
 
-    public GameManager() {
-        gs = new GameState();
-        api = new API(gs);
-    }
-
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
-        running = true;
 
     }
 
@@ -45,7 +36,7 @@ public class GameManager implements Runnable {
     public void run() {
         Game game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
 
-        while (running) {
+        while (GameState.isRunning()) {
             game.update();
 
             if (game.reset()) {
@@ -54,15 +45,7 @@ public class GameManager implements Runnable {
             }
         }
 
-        running = false;
-    }
-
-    public boolean isRunning() {
-        return running;
-    }
-
-    public void setRunning(boolean val) {
-        running = val;
+        GameState.setRunning(false);
     }
 
     private long getRunningTime() {
