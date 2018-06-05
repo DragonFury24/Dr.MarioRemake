@@ -3,8 +3,6 @@ package logic;
 
 // TODO: 5/6/2018 Look into multithreading
 
-import java.awt.event.ActionListener;
-
 // TODO: 5/6/2018 Test different TICK_RATEs later
     /*
     Implement constant TICK with variable, maximum frame times
@@ -26,6 +24,7 @@ public class GameManager implements Runnable {
 
     public synchronized void stop() {
         try {
+            thread.interrupt();
             thread.join();
         }catch (InterruptedException ie) {
             ie.printStackTrace();
@@ -47,8 +46,6 @@ public class GameManager implements Runnable {
                 continue;
             }
         }
-
-        GameState.setRunning(false);
     }
 
     private long getRunningTime() {

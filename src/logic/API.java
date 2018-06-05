@@ -36,5 +36,9 @@ public class API implements EventListener {
         System.out.println("Resetting...");
         GameState.setReset(true);
     }
+
+    public static Board getBoard() {
+        return GameState.getBoard();
+    }
     //calculate total score to write to file, display high score
 }

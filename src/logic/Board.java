@@ -10,6 +10,8 @@ public class Board {
     private Unit[][] arrayBoard;
     private boolean usingSparse;
 
+    public static final int NUM_ROWS = 17;
+    public static final int NUM_COLS = 8;
     enum BACKING_CONTAINERS {
         SparseMatrix,
         Array

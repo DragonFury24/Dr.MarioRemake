@@ -19,13 +19,21 @@ public class DrMMain {
         gw.start();
         gm.start();
 
-        while(true) {
-            if (!API.isRunning()) {
-                gw.stop();
-                gm.stop();
-                break;
-            }
+//        while(true) {
+//            if (!API.isRunning()) {
+//                gw.stop();
+//                gm.stop();
+//                break;
+//            }
+//
+//        }
 
-        }
+        Thread checkGameOver = new Thread(() -> {
+            while (true) {
+                System.out.println(Thread.getAllStackTraces());
+            }
+        });
+
+        checkGameOver.start();
     }
 }

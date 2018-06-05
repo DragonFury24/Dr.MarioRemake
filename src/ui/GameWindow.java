@@ -1,7 +1,6 @@
 package ui;
 
 import logic.API;
-import logic.GameState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,7 +88,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         bottom.add(exit);
         bottom.add(reset);
 
-        exit.addActionListener(action -> System.exit(0));
+        exit.addActionListener(action -> API.setRunning(false));
         reset.addActionListener(action -> API.reset());
     }
 
@@ -116,6 +115,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
 
     public synchronized void stop() {
         try {
+            thread.interrupt();
             thread.join();
         } catch (InterruptedException ie) {
             ie.printStackTrace();
@@ -127,6 +127,9 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     @Override
     public void run() {
         System.out.println("Game Window running..");
+        while (API.isRunning()) {
+
+        }
     }
 
     @Override

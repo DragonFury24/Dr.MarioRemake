@@ -5,6 +5,7 @@ public class GameState {
     static private int numViruses;
     static private boolean running = true;
     static private boolean reset = false;
+    static private Board board = new Board(Board.BACKING_CONTAINERS.SparseMatrix);
 
     static int getTotalScore() {
         return totalScore;
@@ -34,5 +35,9 @@ public class GameState {
     static boolean setReset(boolean resetGame) {
         reset = resetGame;
         return reset;
+    }
+
+    static Board getBoard() {
+        return board;
     }
 }
