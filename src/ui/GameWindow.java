@@ -11,9 +11,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class GameWindow extends JFrame implements KeyListener, MouseListener, Runnable {
-    private JPanel    gameArea;
-    private BorderLayout borderLayout = new BorderLayout();
-    private Scoreboard scoreboard = new Scoreboard();
+    private JPanel       gameArea;
+    private BorderLayout borderLayout;
+    private Scoreboard   scoreboard;
+    private Left         left;
+    private Right        right;
+    private Top          top;
+    private Bottom       bottom;
+    private Center       center;
+
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
 
@@ -30,12 +36,46 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         setSize(screenSize.width / 2, screenSize.height / 2);
         setLocationRelativeTo(null);
         addKeyListener(this);
-
-        setLayout(borderLayout);
-        add(scoreboard, BorderLayout.PAGE_START);
+        setContentPane(gameArea);
     }
 
-    private void createUI() {
+    private void initializeAll() {
+        gameArea = new JPanel();
+        borderLayout = new BorderLayout();
+        scoreboard = new Scoreboard();
+        left = new Left();
+        right = new Right();
+        top = new Top();
+        bottom = new Bottom();
+        center = new Center();
+    }
+
+    private void configureGameArea() {
+        gameArea.setLayout(borderLayout);
+        gameArea.add(left, BorderLayout.LINE_START);
+        gameArea.add(right, BorderLayout.LINE_END);
+        gameArea.add(top, BorderLayout.PAGE_START);
+        gameArea.add(bottom, BorderLayout.PAGE_END);
+        gameArea.add(center, BorderLayout.CENTER);
+    }
+
+    private void configureLeft() {
+        left.add(scoreboard);
+    }
+
+    private void configureRight() {
+
+    }
+
+    private void configureTop() {
+
+    }
+
+    private void configureBottom() {
+
+    }
+
+    private void configureCenter() {
 
     }
 
@@ -44,8 +84,14 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     }
 
     public synchronized void start() {
+        initializeAll();
         configureFrame();
-        createUI();
+        configureGameArea();
+        configureLeft();
+        configureRight();
+        configureTop();
+        configureBottom();
+        configureCenter();
     }
 
     public synchronized void stop() {
@@ -79,9 +125,9 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
 //                moveRight();
                 scoreboard.increaseScore();
                 break;
-                case KeyEvent.VK_UP:
-                    scoreboard.resetTotal();
-                    break;
+            case KeyEvent.VK_UP:
+                scoreboard.resetTotal();
+                break;
             case KeyEvent.VK_DOWN:
 //                moveDown();
                 scoreboard.increaseScore();
