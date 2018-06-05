@@ -88,7 +88,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         bottom.add(exit);
         bottom.add(reset);
 
-        exit.addActionListener(action -> API.setRunning(false));
+        exit.addActionListener(action -> System.exit(0));
         reset.addActionListener(action -> API.reset());
     }
 
@@ -158,7 +158,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
                 scoreboard.increaseScore();
                 break;
             case KeyEvent.VK_ESCAPE:
-                API.setRunning(false);
+                System.exit(0);
                 break;
             default:
                 break;
