@@ -33,7 +33,8 @@ public class API implements EventListener {
     }
 
     public static void reset() {
-        System.out.println("Resetting");
+        System.out.println("Resetting...");
+        GameState.setReset(true);
     }
     //calculate total score to write to file, display high score
 }

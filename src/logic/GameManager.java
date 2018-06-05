@@ -22,7 +22,6 @@ public class GameManager implements Runnable {
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
-
     }
 
     public synchronized void stop() {
@@ -31,23 +30,26 @@ public class GameManager implements Runnable {
         }catch (InterruptedException ie) {
             ie.printStackTrace();
         }
+
+        System.out.println("GAME IS NOW OVER!! SHUTTING DOWN GAME THREAD!!");
     }
 
     public void run() {
+        System.out.println("Game Manager running...");
         Game game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
 
         while (GameState.isRunning()) {
             game.update();
 
-            if (game.reset()) {
+            if (GameState.getReset()) {
                 game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
+                GameState.setReset(false);
                 continue;
             }
         }
 
         GameState.setRunning(false);
     }
-
 
     private long getRunningTime() {
         return System.currentTimeMillis() - START_TIME;

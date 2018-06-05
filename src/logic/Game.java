@@ -3,23 +3,17 @@ package logic;
 import utils.SparseMatrix;
 
 public class Game {
-    private boolean reset = false;
-
     private Board board;
+    int counter = 0;
 
     public Game(Board.BACKING_CONTAINERS container) {
         board = new Board(container);
     }
 
     public void update() {
-
-    }
-
-    public void setReset(boolean reset) {
-        this.reset = reset;
-    }
-
-    public boolean reset() {
-        return reset;
+//        System.out.print("Updating...");
+//        System.out.print(counter);
+//        System.out.println();
+//        counter++;
     }
 }

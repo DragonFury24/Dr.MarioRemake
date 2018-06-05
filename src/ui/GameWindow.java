@@ -1,9 +1,9 @@
 package ui;
 
 import logic.API;
+import logic.GameState;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,17 +14,18 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     private JPanel       gameArea;
     private BorderLayout borderLayout;
 
-    private Left         left;
-    private Scoreboard   scoreboard;
+    private Left       left;
+    private Scoreboard scoreboard;
 
-    private Right        right;
+    private Right right;
 
-    private Top          top;
+    private Top top;
 
-    private Bottom       bottom;
+    private Bottom  bottom;
     private JButton exit;
     private JButton reset;
-    private Center       center;
+
+    private Center  center;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
@@ -32,7 +33,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     private Thread thread;
 
     public GameWindow() {
-        thread = new Thread(this);
+
     }
 
     private void configureFrame() {
@@ -101,6 +102,8 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     }
 
     public synchronized void start() {
+        thread = new Thread(this);
+        thread.start();
         initializeAll();
         configureFrame();
         configureGameArea();
@@ -117,11 +120,13 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         } catch (InterruptedException ie) {
             ie.printStackTrace();
         }
+
+        System.out.println("GAME IS NOW OVER!! CLOSING WINDOW!!");
     }
 
     @Override
     public void run() {
-
+        System.out.println("Game Window running..");
     }
 
     @Override
@@ -150,7 +155,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
                 scoreboard.increaseScore();
                 break;
             case KeyEvent.VK_ESCAPE:
-                System.exit(0);
+                API.setRunning(false);
                 break;
             default:
                 break;

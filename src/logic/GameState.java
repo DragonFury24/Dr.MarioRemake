@@ -3,7 +3,8 @@ package logic;
 public class GameState {
     static private int totalScore;
     static private int numViruses;
-    static private boolean running;
+    static private boolean running = true;
+    static private boolean reset = false;
 
     static int getTotalScore() {
         return totalScore;
@@ -24,5 +25,14 @@ public class GameState {
     static boolean setRunning(boolean gameStatus) {
         running = gameStatus;
         return running;
+    }
+
+    static boolean getReset() {
+        return reset;
+    }
+
+    static boolean setReset(boolean resetGame) {
+        reset = resetGame;
+        return reset;
     }
 }
