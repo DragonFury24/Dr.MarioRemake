@@ -13,11 +13,17 @@ import java.awt.event.MouseListener;
 public class GameWindow extends JFrame implements KeyListener, MouseListener, Runnable {
     private JPanel       gameArea;
     private BorderLayout borderLayout;
-    private Scoreboard   scoreboard;
+
     private Left         left;
+    private Scoreboard   scoreboard;
+
     private Right        right;
+
     private Top          top;
+
     private Bottom       bottom;
+    private JButton exit;
+    private JButton reset;
     private Center       center;
 
     private Dimension screenSize = Toolkit.getDefaultToolkit()
@@ -42,11 +48,18 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     private void initializeAll() {
         gameArea = new JPanel();
         borderLayout = new BorderLayout();
-        scoreboard = new Scoreboard();
+
         left = new Left();
+        scoreboard = new Scoreboard();
+
         right = new Right();
+
         top = new Top();
+
         bottom = new Bottom();
+        exit = new JButton("Exit");
+        reset = new JButton("Reset");
+
         center = new Center();
     }
 
@@ -72,7 +85,11 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     }
 
     private void configureBottom() {
+        bottom.add(exit);
+        bottom.add(reset);
 
+        exit.addActionListener(action -> System.exit(0));
+        reset.addActionListener(action -> API.reset());
     }
 
     private void configureCenter() {

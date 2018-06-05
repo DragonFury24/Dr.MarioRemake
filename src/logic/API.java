@@ -11,25 +11,29 @@ public class API implements EventListener {
 //        return gs;
 //    }
 
-    static public int totalScore() {
+    public static int totalScore() {
         return GameState.getTotalScore();
     }
 
-    static public int numViruses() {
+    public static int numViruses() {
         return 0;
     }
 
-    static public int numUnitsRemoved() {
+    public static int numUnitsRemoved() {
         return 0;
     }
 
-    static public boolean isRunning() {
+    public static boolean isRunning() {
         return GameState.isRunning();
     }
 
-    static public boolean setRunning(boolean gameStatus) {
+    public static boolean setRunning(boolean gameStatus) {
         GameState.setRunning(gameStatus);
         return isRunning();
+    }
+
+    public static void reset() {
+        System.out.println("Resetting");
     }
     //calculate total score to write to file, display high score
 }

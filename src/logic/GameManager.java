@@ -48,6 +48,7 @@ public class GameManager implements Runnable {
         GameState.setRunning(false);
     }
 
+
     private long getRunningTime() {
         return System.currentTimeMillis() - START_TIME;
     }
