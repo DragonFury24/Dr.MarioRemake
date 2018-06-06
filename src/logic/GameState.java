@@ -1,11 +1,12 @@
 package logic;
 
 public class GameState {
-    static private int totalScore;
-    static private int numViruses;
-    static private boolean running = true;
-    static private boolean reset = false;
-    static private Board board = new Board(Board.BACKING_CONTAINERS.SparseMatrix);
+    private static int totalScore;
+    private static int topScore;
+    private static int numViruses;
+    private static boolean running = true;
+    private static boolean reset = false;
+    private static Board board = new Board(Board.BACKING_CONTAINERS.SparseMatrix);
 
     static int getTotalScore() {
         return totalScore;
@@ -35,6 +36,18 @@ public class GameState {
     static boolean setReset(boolean resetGame) {
         reset = resetGame;
         return reset;
+    }
+
+    static int getTopScore() {
+        return topScore;
+    }
+
+    static void setTotalScore(int score) {
+        totalScore = score;
+    }
+
+    static void setTopScore(int score) {
+        topScore = score;
     }
 
     static Board getBoard() {

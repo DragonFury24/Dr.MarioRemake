@@ -3,6 +3,8 @@ package logic;
 
 // TODO: 5/6/2018 Look into multithreading
 
+import javax.swing.*;
+
 // TODO: 5/6/2018 Test different TICK_RATEs later
     /*
     Implement constant TICK with variable, maximum frame times
@@ -11,11 +13,14 @@ package logic;
 public class GameManager implements Runnable {
     private Thread thread;
 
+    private Game game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
     private final int TICKS_PER_SECOND = 15;
     private final int TICK_SKIP = 1000 / TICKS_PER_SECOND;
     private final int MAX_FRAME_SKIP = 5;
 
     private final long START_TIME = System.currentTimeMillis();
+
+    private Timer timer = new Timer(1, update -> update());
 
     public synchronized void start() {
         thread = new Thread(this);
@@ -35,8 +40,10 @@ public class GameManager implements Runnable {
 
     public void run() {
         System.out.println("Game Manager running...");
-        Game game = new Game(Board.BACKING_CONTAINERS.SparseMatrix);
 
+    }
+
+    void update() {
         while (GameState.isRunning()) {
             game.update();
 

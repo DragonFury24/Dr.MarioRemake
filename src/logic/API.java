@@ -40,5 +40,26 @@ public class API implements EventListener {
     public static Board getBoard() {
         return GameState.getBoard();
     }
+
+    public static int getTotalScore() {
+        return GameState.getTotalScore();
+    }
+
+    public static int getTopScore() {
+        return GameState.getTopScore();
+    }
+
+    public static void resetTotal() {
+        GameState.setTotalScore(0);
+    }
+
+    public static int increaseScore() {
+        GameState.setTotalScore(GameState.getTotalScore() + 300);
+
+        if (GameState.getTotalScore() > GameState.getTopScore())
+            GameState.setTopScore(GameState.getTotalScore());
+
+        return GameState.getTotalScore();
+    }
     //calculate total score to write to file, display high score
 }

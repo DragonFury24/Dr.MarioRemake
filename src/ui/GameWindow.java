@@ -1,6 +1,7 @@
 package ui;
 
 import logic.API;
+import ui.game.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +31,8 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
                                           .getScreenSize();
 
     private Thread thread;
+
+    private Timer timer = new Timer(1, update -> update());
 
     public GameWindow() {
 
@@ -124,12 +127,15 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         System.out.println("GAME IS NOW OVER!! CLOSING WINDOW!!");
     }
 
+    public void update() {
+        scoreboard.update();
+        requestFocus();
+    }
+
     @Override
     public void run() {
         System.out.println("Game Window running..");
-        while (API.isRunning()) {
-
-        }
+        timer.start();
     }
 
     @Override
@@ -144,18 +150,22 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         switch (event) {
             case KeyEvent.VK_LEFT:
 //                moveLeft();
-                scoreboard.increaseScore();
+                API.increaseScore();
+                System.out.println("LeftArrow");
                 break;
             case KeyEvent.VK_RIGHT:
 //                moveRight();
-                scoreboard.increaseScore();
+                API.increaseScore();
+                System.out.println("RightArrow");
                 break;
             case KeyEvent.VK_UP:
-                scoreboard.resetTotal();
+                API.resetTotal();
+                System.out.println("ArrowUp");
                 break;
             case KeyEvent.VK_DOWN:
 //                moveDown();
-                scoreboard.increaseScore();
+                API.increaseScore();
+                System.out.println("ArrowDown");
                 break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);

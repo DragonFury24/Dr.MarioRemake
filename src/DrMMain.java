@@ -34,6 +34,6 @@ public class DrMMain {
             }
         });
 
-        checkGameOver.start();
+//        checkGameOver.start();
     }
 }

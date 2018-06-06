@@ -1,5 +1,7 @@
 package ui;
 
+import logic.API;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,21 +35,7 @@ public class Scoreboard extends JPanel {
 //    }
 
     public void update() {
-        totalScoreLabel.setText("Score:" + totalScoreInt);
-        topScoreLabel.setText("Top:" + topScoreInt);
-    }
-
-    public void increaseScore() {
-        totalScoreInt += 300;
-
-        if (totalScoreInt > topScoreInt)
-            topScoreInt = totalScoreInt;
-
-        update();
-    }
-
-    public void resetTotal() {
-        totalScoreInt = 0;
-        update();
+        totalScoreLabel.setText("Score:" + API.getTotalScore());
+        topScoreLabel.setText("Top:" + API.getTopScore());
     }
 }
