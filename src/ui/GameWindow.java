@@ -26,6 +26,7 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     private JButton reset;
 
     private Center  center;
+    private GameBoard gameBoard = new GameBoard();
 
     private Dimension screenSize = Toolkit.getDefaultToolkit()
                                           .getScreenSize();
@@ -91,16 +92,12 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         bottom.add(exit);
         bottom.add(reset);
 
-        exit.addActionListener(action -> System.exit(0));
+        exit.addActionListener(action -> API.setRunning(false));
         reset.addActionListener(action -> API.reset());
     }
 
     private void configureCenter() {
-
-    }
-
-    public void refresh() {
-
+        add(gameBoard);
     }
 
     public synchronized void start() {
@@ -127,6 +124,9 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
         System.out.println("GAME IS NOW OVER!! CLOSING WINDOW!!");
     }
 
+    public Thread getThread() {
+        return thread;
+    }
     public void update() {
         scoreboard.update();
         requestFocus();

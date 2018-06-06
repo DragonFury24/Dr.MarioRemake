@@ -38,6 +38,10 @@ public class GameManager implements Runnable {
         System.out.println("GAME IS NOW OVER!! SHUTTING DOWN GAME THREAD!!");
     }
 
+    public Thread getThread() {
+        return thread;
+    }
+
     public void run() {
         System.out.println("Game Manager running...");
 

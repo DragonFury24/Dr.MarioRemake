@@ -9,13 +9,24 @@ public class DrMMain {
     //possible split Window rendering and game engine onto 2 separate threads
     //Look into synchronizing if multithreaded
     public static void main(String[] args) {
-        new DrMMain();
+        startGame();
+        checkGameOver.start();
     }
 
-    GameWindow  gw = new GameWindow();
-    GameManager gm = new GameManager();
+    static GameWindow  gw = new GameWindow();
+    static GameManager gm = new GameManager();
 
-    public DrMMain() {
+    static Thread checkGameOver = new Thread(() -> {
+        while (true) {
+            if (!API.isRunning()) {
+                gw.getThread()
+                  .interrupt();
+                gw.stop();
+            }
+        }
+    });
+
+    static void startGame() {
         gw.start();
         gm.start();
 
@@ -28,12 +39,13 @@ public class DrMMain {
 //
 //        }
 
-        Thread checkGameOver = new Thread(() -> {
-            while (true) {
-                System.out.println(Thread.getAllStackTraces());
-            }
-        });
+
 
 //        checkGameOver.start();
+    }
+
+    static void exit() {
+        gw.stop();
+        gm.stop();
     }
 }
