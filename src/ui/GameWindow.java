@@ -1,6 +1,7 @@
 package ui;
 
 import logic.API;
+import org.omg.CORBA.INTERNAL;
 import ui.game.GameBoard;
 
 import javax.swing.*;
@@ -114,8 +115,8 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     }
 
     public synchronized void stop() {
+        System.out.println("Exiting");
         try {
-            thread.interrupt();
             thread.join();
         } catch (InterruptedException ie) {
             ie.printStackTrace();
@@ -127,9 +128,19 @@ public class GameWindow extends JFrame implements KeyListener, MouseListener, Ru
     public Thread getThread() {
         return thread;
     }
+
     public void update() {
         scoreboard.update();
         requestFocus();
+        if (!API.isRunning()) {
+            timer.stop();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+            stop();
+        }
     }
 
     @Override

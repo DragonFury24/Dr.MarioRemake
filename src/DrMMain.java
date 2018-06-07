@@ -10,7 +10,6 @@ public class DrMMain {
     //Look into synchronizing if multithreaded
     public static void main(String[] args) {
         startGame();
-        checkGameOver.start();
     }
 
     static GameWindow  gw = new GameWindow();
@@ -19,9 +18,20 @@ public class DrMMain {
     static Thread checkGameOver = new Thread(() -> {
         while (true) {
             if (!API.isRunning()) {
-                gw.getThread()
-                  .interrupt();
-                gw.stop();
+                try {
+                    gw.getThread()
+                      .interrupt();
+                    Thread.sleep(1000);
+                    gw.stop();
+                    gm.getThread()
+                      .interrupt();
+                    Thread.sleep(1000);
+                    gm.stop();
+
+                    exit();
+                } catch (InterruptedException ie) {
+                    ie.printStackTrace();
+                }
             }
         }
     });
@@ -45,7 +55,10 @@ public class DrMMain {
     }
 
     static void exit() {
-        gw.stop();
-        gm.stop();
+        try {
+            checkGameOver.join();
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
     }
 }
