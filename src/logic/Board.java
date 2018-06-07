@@ -82,9 +82,11 @@ public class Board {
         int[] currLoc;
         currLoc = getLocation(curr);
         Pill other = (Pill) (curr);
-        if (!(grid.get(currLoc[0] + 1, currLoc[1] ).contains(Pill other))) {
-            grid.add(currLoc[0] + 1, currLoc[1], curr);
-            grid.remove(currLoc[0], currLoc[1]);
+        if(currLoc[0] != NUM_ROWS) {
+            if (!(grid.get(currLoc[0] + 1, currLoc[1]).contains(Pill other))) {
+                grid.add(currLoc[0] + 1, currLoc[1], curr);
+                grid.remove(currLoc[0], currLoc[1]);
+            }
         }
     }
 
