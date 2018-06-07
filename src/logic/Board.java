@@ -12,6 +12,7 @@ public class Board {
 
     public static final int NUM_ROWS = 17;
     public static final int NUM_COLS = 8;
+
     enum BACKING_CONTAINERS {
         SparseMatrix,
         Array
@@ -52,16 +53,39 @@ public class Board {
         usingSparse = false;
     }
 
-    public void moveLeft(SparseMatrix grid, Pill current) {
-
+    public void moveLeft(SparseMatrix<Unit> grid, Pill curr) {
+        int[] currLoc;
+        currLoc = getLocation(curr);
+        Pill other = (Pill) (curr);
+        if (currLoc[1] != 0) {
+            if (!(grid.get(currLoc[0], currLoc[1] - 1).contains(Pill other))) {
+                grid.add(currLoc[0], currLoc[1] - 1, curr);
+                grid.remove(currLoc[0], currLoc[1]);
+            }
+        }
     }
 
-    public void moveRight(SparseMatrix grid, Pill current) {
-
+    public void moveRight(SparseMatrix<Unit> grid, Pill curr) {
+        int[] currLoc;
+        currLoc = getLocation(curr);
+        Pill other = (Pill) (curr);
+        if (currLoc[1] != NUM_COLS) {
+            if (!(grid.get(currLoc[0], currLoc[1] + 1).contains((Pill other)))){
+                grid.add(currLoc[0], currLoc[1] + 1, curr);
+                grid.remove(currLoc[0], currLoc[1]);
+            }
+        }
     }
 
-    public void moveDown(SparseMatrix grid, Pill current) {
 
+    public void moveDown(SparseMatrix<Unit> grid, Pill curr) {
+        int[] currLoc;
+        currLoc = getLocation(curr);
+        Pill other = (Pill) (curr);
+        if (!(grid.get(currLoc[0] + 1, currLoc[1] ).contains(Pill other))) {
+            grid.add(currLoc[0] + 1, currLoc[1], curr);
+            grid.remove(currLoc[0], currLoc[1]);
+        }
     }
 
 
